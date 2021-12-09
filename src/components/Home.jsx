@@ -6,11 +6,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
+import ForumIcon from "@mui/icons-material/Forum";
 import { Link } from "react-router-dom";
 
 const appNav = [
   { icon: <LocalActivityIcon />, to: "/events", text: "Events" },
   { icon: <MonetizationOnIcon />, to: "/sponsors", text: "Sponsors" },
+  { icon: <ForumIcon />, to: "/panels", text: "Panels" },
 ];
 const NavItem = ({ icon, to, text }) => (
   <Link to={to}>
