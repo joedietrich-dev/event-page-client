@@ -2,7 +2,7 @@ import { List, ListItem, ListItemText, Paper } from "@mui/material";
 import { useState, useEffect } from "react";
 
 function Events() {
-  const [events, setEvents] = useState([1, 2, 3, 4]);
+  const [events, setEvents] = useState([]);
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_ROOT}/events`)
       .then((res) => res.json())

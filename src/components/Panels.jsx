@@ -11,7 +11,7 @@ function Panels() {
   return (
     <ul>
       {panels.map((panel) => (
-        <li>
+        <li key={panel.id}>
           <h3>{panel.title}</h3>
           <p>{panel.time}</p>
           <p>{panel.description}</p>

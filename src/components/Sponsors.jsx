@@ -11,7 +11,7 @@ function Sponsors() {
   return (
     <ul>
       {sponsors.map((sponsor) => (
-        <li>
+        <li key={sponsor.id}>
           <img src={sponsor.logo_src} alt={sponsor.name} width="100" />
           {sponsor.name}
         </li>
