@@ -1,4 +1,6 @@
-import { List, ListItem, ListItemText, Paper } from "@mui/material";
+import { List, ListItem, ListItemButton, ListItemText, Paper } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 import { useState, useEffect } from "react";
 
 function Events() {
@@ -16,6 +18,12 @@ function Events() {
         {events.map((event) => (
           <ListItem key={event.id}>
             <ListItemText primary={event.title} secondary={event.description} />
+            <ListItemButton>
+              <VisibilityIcon />
+            </ListItemButton>
+            <ListItemButton>
+              <EditIcon />
+            </ListItemButton>
           </ListItem>
         ))}
       </List>

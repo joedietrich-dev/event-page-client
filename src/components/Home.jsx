@@ -8,6 +8,8 @@ import LocalActivityIcon from "@mui/icons-material/LocalActivity";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 import ForumIcon from "@mui/icons-material/Forum";
+import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import { Link } from "react-router-dom";
 
 const appNav = [
@@ -15,6 +17,8 @@ const appNav = [
   { icon: <MonetizationOnIcon />, to: "/sponsors", text: "Sponsors" },
   { icon: <ForumIcon />, to: "/panels", text: "Panels" },
   { icon: <PeopleAltIcon />, to: "/panelists", text: "Panelists" },
+  { icon: <EmojiPeopleIcon />, to: "/hosts", text: "Hosts" },
+  { icon: <EmojiEventsIcon />, to: "/honorees", text: "Honorees" },
 ];
 const NavItem = ({ icon, to, text }) => (
   <Link to={to}>
