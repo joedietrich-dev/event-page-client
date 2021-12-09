@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, Redirect } from "react-router-dom";
-import Landing from "./components/Landing";
+import Events from "./components/Events";
+import Home from "./components/Home";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Landing />}></Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/events" element={<Events />} />
       </Routes>
     </Router>
   );
