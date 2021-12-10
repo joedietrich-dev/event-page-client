@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Events from "./components/Events";
-import Event from "./components/Event";
-import Home from "./components/Home";
-import Honorees from "./components/Honorees";
-import Hosts from "./components/Hosts";
-import Panelists from "./components/Panelists";
-import Panels from "./components/Panels";
-import Sponsors from "./components/Sponsors";
 import Layout from "./components/Layout";
+import Home from "./components/Home";
+import Events from "./components/Event/Events";
+import Event from "./components/Event/Event";
+import Honorees from "./components/Honoree/Honorees";
+import Hosts from "./components/Host/Hosts";
+import Panelists from "./components/Panelist/Panelists";
+import Panels from "./components/Panel/Panels";
+import Sponsors from "./components/Sponsor/Sponsors";
 
 function App() {
   return (
