@@ -9,6 +9,7 @@ import Panelists from "./components/Panelist/Panelists";
 import Panels from "./components/Panel/Panels";
 import Sponsors from "./components/Sponsor/Sponsors";
 import EventEdit from "./components/Event/EventEdit";
+import SponsorEdit from "./components/Sponsor/SponsorEdit";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="events/:eventId/view" element={<EventView />} />
           <Route path="events/:eventId/edit" element={<EventEdit />} />
           <Route path="sponsors" element={<Sponsors />} />
+          <Route path="sponsors/:sponsorId/edit" element={<SponsorEdit />} />
           <Route path="panels" element={<Panels />} />
           <Route path="panelists" element={<Panelists />} />
           <Route path="hosts" element={<Hosts />} />
