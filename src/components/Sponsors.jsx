@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import SponsorList from "./SponsorList";
 
 function Sponsors() {
   const [sponsors, setSponsors] = useState([]);
@@ -8,16 +9,7 @@ function Sponsors() {
       .then(setSponsors)
       .catch(console.log);
   }, []);
-  return (
-    <ul>
-      {sponsors.map((sponsor) => (
-        <li key={sponsor.id}>
-          <img src={sponsor.logo_src} alt={sponsor.name} width="100" />
-          {sponsor.name}
-        </li>
-      ))}
-    </ul>
-  );
+  return <SponsorList sponsors={sponsors} />;
 }
 
 export default Sponsors;

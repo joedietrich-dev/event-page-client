@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import HonoreeList from "./HonoreeList";
 
 function Honorees() {
   const [honorees, setHonorees] = useState([]);
@@ -8,15 +9,7 @@ function Honorees() {
       .then(setHonorees)
       .catch(console.log);
   }, []);
-  return (
-    <ul>
-      {honorees.map((honoree) => (
-        <li key={honoree.id}>
-          {honoree.name} - {honoree.event_id}
-        </li>
-      ))}
-    </ul>
-  );
+  return <HonoreeList honorees={honorees} />;
 }
 
 export default Honorees;

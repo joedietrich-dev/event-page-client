@@ -1,6 +1,3 @@
-import { List, ListItem, ListItemButton, ListItemText, Paper } from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 

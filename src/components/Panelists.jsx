@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PanelistList from "./PanelistList";
 
 function Panelists() {
   const [panelists, setPanelists] = useState([]);
@@ -8,15 +9,7 @@ function Panelists() {
       .then(setPanelists)
       .catch(console.log);
   }, []);
-  return (
-    <ul>
-      {panelists.map((panelist) => (
-        <li key={panelist.id}>
-          {panelist.name} - {panelist.title} - {panelist.company}
-        </li>
-      ))}
-    </ul>
-  );
+  return <PanelistList panelists={panelists} />;
 }
 
 export default Panelists;

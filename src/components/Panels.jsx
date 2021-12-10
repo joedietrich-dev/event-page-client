@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PanelList from "./PanelList";
 
 function Panels() {
   const [panels, setpanels] = useState([]);
@@ -8,17 +9,7 @@ function Panels() {
       .then(setpanels)
       .catch(console.log);
   }, []);
-  return (
-    <ul>
-      {panels.map((panel) => (
-        <li key={panel.id}>
-          <h3>{panel.title}</h3>
-          <p>{panel.time}</p>
-          <p>{panel.description}</p>
-        </li>
-      ))}
-    </ul>
-  );
+  return <PanelList panels={panels} />;
 }
 
 export default Panels;
