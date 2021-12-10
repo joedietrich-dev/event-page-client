@@ -1,7 +1,5 @@
-import { List, ListItem, ListItemButton, ListItemText, Paper } from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 import { useState, useEffect } from "react";
+import EventList from "./EventList";
 
 function Events() {
   const [events, setEvents] = useState([]);
@@ -12,23 +10,7 @@ function Events() {
       .catch(console.log);
   }, []);
 
-  return (
-    <Paper>
-      <List>
-        {events.map((event) => (
-          <ListItem key={event.id}>
-            <ListItemText primary={event.title} secondary={event.description} />
-            <ListItemButton>
-              <VisibilityIcon />
-            </ListItemButton>
-            <ListItemButton>
-              <EditIcon />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Paper>
-  );
+  return <EventList events={events} />;
 }
 
 export default Events;

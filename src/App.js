@@ -2,12 +2,13 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import Events from "./components/Event/Events";
-import Event from "./components/Event/Event";
+import EventView from "./components/Event/EventView";
 import Honorees from "./components/Honoree/Honorees";
 import Hosts from "./components/Host/Hosts";
 import Panelists from "./components/Panelist/Panelists";
 import Panels from "./components/Panel/Panels";
 import Sponsors from "./components/Sponsor/Sponsors";
+import EventEdit from "./components/Event/EventEdit";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="events" element={<Events />} />
-          <Route path="events/:eventId/view" element={<Event />} />
+          <Route path="events/:eventId/view" element={<EventView />} />
+          <Route path="events/:eventId/edit" element={<EventEdit />} />
           <Route path="sponsors" element={<Sponsors />} />
           <Route path="panels" element={<Panels />} />
           <Route path="panelists" element={<Panelists />} />
