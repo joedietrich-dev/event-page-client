@@ -1,12 +1,16 @@
-import { Button, Container, Paper, TextField, Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import PublishIcon from "@mui/icons-material/Publish";
+import { Button, Container, Grid, Paper, TextField, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router-dom";
 import PanelList from "../Panel/PanelList";
+import SponsorEvents from "./SponsorEvents";
 
 function SponsorEdit() {
   const [sponsor, setSponsor] = useState({ name: "", logo_src: "", event_sponsors: [], panels: [] });
   const { sponsorId } = useParams();
+  let navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_ROOT}/sponsors/${sponsorId}`)
@@ -16,7 +20,6 @@ function SponsorEdit() {
   }, [sponsorId]);
 
   const handleChange = (event) => {
-    console.log(event.target.name);
     setSponsor({ ...sponsor, [event.target.name]: event.target.value });
   };
   const handleSubmit = (event) => {
@@ -30,6 +33,18 @@ function SponsorEdit() {
     })
       .then((res) => res.json())
       .then((data) => setSponsor({ ...sponsor, ...data }))
+      .catch(console.log);
+  };
+  const handleDelete = (event) => {
+    fetch(`${process.env.REACT_APP_API_ROOT}/sponsors/${sponsorId}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          setSponsor({ name: "", logo_src: "", event_sponsors: [], panels: [] });
+          navigate("/sponsors");
+        }
+      })
       .catch(console.log);
   };
 
@@ -63,11 +78,26 @@ function SponsorEdit() {
             margin="normal"
             fullWidth
           />
-          <Button variant="contained" margin="normal" onClick={handleSubmit}>
-            Submit
-          </Button>
+          <Grid container direction="row" justifyContent="space-between">
+            <Button variant="contained" margin="normal" startIcon={<PublishIcon />} onClick={handleSubmit}>
+              Submit
+            </Button>
+            <Button variant="outlined" color="warning" margin="normal" startIcon={<DeleteIcon />} onClick={handleDelete}>
+              Delete
+            </Button>
+          </Grid>
         </Box>
       </Paper>
+      {sponsor.event_sponsors.length > 0 && (
+        <Paper>
+          <Box sx={{ padding: "1rem", marginTop: "1rem" }}>
+            <Typography variant="h4" component="h2">
+              Sponsored Events
+            </Typography>
+            <SponsorEvents event_sponsors={sponsor.event_sponsors} />
+          </Box>
+        </Paper>
+      )}
       <Paper>
         <Box sx={{ padding: "1rem", marginTop: "1rem" }}>
           <Typography variant="h4" component="h2">
