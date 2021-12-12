@@ -12,6 +12,8 @@ import EventEdit from "./components/Event/EventEdit";
 import SponsorEdit from "./components/Sponsor/SponsorEdit";
 import SponsorNew from "./components/Sponsor/SponsorNew";
 import "./App.css";
+import HostNew from "./components/Host/HostNew";
+import HostEdit from "./components/Host/HostEdit";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
           <Route path="panels" element={<Panels />} />
           <Route path="panelists" element={<Panelists />} />
           <Route path="hosts" element={<Hosts />} />
+          <Route path="hosts/new" element={<HostNew />} />
+          <Route path="hosts/:hostId/edit" element={<HostEdit />} />
           <Route path="honorees" element={<Honorees />} />
         </Route>
       </Routes>
