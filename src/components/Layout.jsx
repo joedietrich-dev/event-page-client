@@ -1,3 +1,4 @@
+import { Container } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Navigation from "./Navigation";
 
@@ -6,7 +7,9 @@ function Layout() {
     <div>
       <Navigation />
       <hr />
-      <Outlet />
+      <Container>
+        <Outlet />
+      </Container>
     </div>
   );
 }

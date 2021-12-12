@@ -49,13 +49,12 @@ function SponsorEdit() {
   };
 
   return (
-    <Container maxWidth="sm">
+    <>
+      <Typography variant="h3" component="h1">
+        Edit Sponsor
+      </Typography>
       <Paper elevation={1} sx={{ padding: "1rem" }}>
         <Box component="form">
-          <Typography variant="h3" component="h1">
-            Edit Sponsor
-          </Typography>
-
           <TextField
             id="name"
             name="name"
@@ -106,7 +105,7 @@ function SponsorEdit() {
           <PanelList panels={sponsor.panels} />
         </Box>
       </Paper>
-    </Container>
+    </>
   );
 }
 
