@@ -1,7 +1,6 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import PublishIcon from "@mui/icons-material/Publish";
-import { Button, Container, Grid, Paper, TextField, Typography } from "@mui/material";
-import { Box } from "@mui/system";
+import { Button, Box, Grid, Paper, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import PanelList from "../Panel/PanelList";
@@ -97,14 +96,16 @@ function SponsorEdit() {
           </Box>
         </Paper>
       )}
-      <Paper>
-        <Box sx={{ padding: "1rem", marginTop: "1rem" }}>
-          <Typography variant="h4" component="h2">
-            Sponsored Panels
-          </Typography>
-          <PanelList panels={sponsor.panels} />
-        </Box>
-      </Paper>
+      {sponsor.panels.length > 0 && (
+        <Paper>
+          <Box sx={{ padding: "1rem", marginTop: "1rem" }}>
+            <Typography variant="h4" component="h2">
+              Sponsored Panels
+            </Typography>
+            <PanelList panels={sponsor.panels} />
+          </Box>
+        </Paper>
+      )}
     </>
   );
 }
