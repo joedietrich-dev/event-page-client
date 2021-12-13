@@ -1,18 +1,13 @@
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import HostList from "./HostList";
+import useFetch from "../../hooks/useFetch";
 
 function Hosts() {
-  const [hosts, setHosts] = useState([]);
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_ROOT}/hosts`)
-      .then((res) => res.json())
-      .then(setHosts)
-      .catch(console.log);
-  }, []);
+  const { data: hosts } = useFetch(`${process.env.REACT_APP_API_ROOT}/hosts`);
+
   return (
     <>
       <Link to="new">
