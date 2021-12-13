@@ -33,7 +33,7 @@ function HostEdit() {
   };
 
   return (
-    <FormContainer title="Edit Host" hasDelete={true} onSubmit={handleSubmit} onDelete={handleDelete}>
+    <FormContainer title="Edit Host" onSubmit={handleSubmit} onDelete={handleDelete}>
       <TextFieldFixedLabel name="name" label="Sponsor Name" value={host.name} onChange={handleChange} />
       <TextFieldFixedLabel name="headshot_src" label="Headshot URL" value={host.headshot_src} onChange={handleChange} />
       <TextFieldFixedLabel name="bio" label="Bio" value={host.bio} onChange={handleChange} multiline={true} />
