@@ -6,8 +6,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import PanelList from "../Panel/PanelList";
 import SponsorEvents from "./SponsorEvents";
 
+const blankFormData = { name: "", logo_src: "", event_sponsors: [], panels: [] };
+
 function SponsorEdit() {
-  const [sponsor, setSponsor] = useState({ name: "", logo_src: "", event_sponsors: [], panels: [] });
+  const [sponsor, setSponsor] = useState(blankFormData);
   const { sponsorId } = useParams();
   let navigate = useNavigate();
 
@@ -40,7 +42,7 @@ function SponsorEdit() {
     })
       .then((res) => {
         if (res.ok) {
-          setSponsor({ name: "", logo_src: "", event_sponsors: [], panels: [] });
+          setSponsor(blankFormData);
           navigate("/sponsors");
         }
       })
