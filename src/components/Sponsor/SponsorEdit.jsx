@@ -1,24 +1,17 @@
-import DeleteIcon from "@mui/icons-material/Delete";
-import PublishIcon from "@mui/icons-material/Publish";
-import { Button, Box, Grid, Paper, TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
+import EditDataCard from "../Common/EditDataCard";
+import FormContainer from "../Common/FormContainer";
+import TextFieldFixedLabel from "../Common/TextFieldFixedLabel";
 import PanelList from "../Panel/PanelList";
 import SponsorEvents from "./SponsorEvents";
 
-const blankFormData = { name: "", logo_src: "", event_sponsors: [], panels: [] };
+const blankSponsor = { name: "", logo_src: "", event_sponsors: [], panels: [] };
 
 function SponsorEdit() {
-  const [sponsor, setSponsor] = useState(blankFormData);
   const { sponsorId } = useParams();
+  const { data: sponsor, setData: setSponsor } = useFetch(`${process.env.REACT_APP_API_ROOT}/sponsors/${sponsorId}`, blankSponsor);
   let navigate = useNavigate();
-
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_ROOT}/sponsors/${sponsorId}`)
-      .then((res) => res.json())
-      .then((data) => setSponsor(data))
-      .catch(console.log);
-  }, [sponsorId]);
 
   const handleChange = (event) => {
     setSponsor({ ...sponsor, [event.target.name]: event.target.value });
@@ -42,7 +35,7 @@ function SponsorEdit() {
     })
       .then((res) => {
         if (res.ok) {
-          setSponsor(blankFormData);
+          setSponsor(blankSponsor);
           navigate("/sponsors");
         }
       })
@@ -51,62 +44,19 @@ function SponsorEdit() {
 
   return (
     <>
-      <Typography variant="h3" component="h1">
-        Edit Sponsor
-      </Typography>
-      <Paper elevation={1} sx={{ padding: "1rem" }}>
-        <Box component="form">
-          <TextField
-            id="name"
-            name="name"
-            label="Sponsor Name"
-            variant="outlined"
-            value={sponsor.name}
-            InputLabelProps={{ shrink: true }}
-            onChange={handleChange}
-            margin="normal"
-            fullWidth
-          />
-          <TextField
-            id="logo_src"
-            name="logo_src"
-            label="Sponsor Logo"
-            variant="outlined"
-            value={sponsor.logo_src}
-            InputLabelProps={{ shrink: true }}
-            onChange={handleChange}
-            margin="normal"
-            fullWidth
-          />
-          <Grid container direction="row" justifyContent="space-between">
-            <Button variant="contained" margin="normal" startIcon={<PublishIcon />} onClick={handleSubmit}>
-              Submit
-            </Button>
-            <Button variant="outlined" color="warning" margin="normal" startIcon={<DeleteIcon />} onClick={handleDelete}>
-              Delete
-            </Button>
-          </Grid>
-        </Box>
-      </Paper>
+      <FormContainer title="Edit Sponsor" onSubmit={handleSubmit} onDelete={handleDelete}>
+        <TextFieldFixedLabel name="name" label="Sponsor Name" value={sponsor.name} onChange={handleChange} />
+        <TextFieldFixedLabel name="logo_src" label="Sponsor Logo" value={sponsor.logo_src} onChange={handleChange} />
+      </FormContainer>
       {sponsor.event_sponsors.length > 0 && (
-        <Paper>
-          <Box sx={{ padding: "1rem", marginTop: "1rem" }}>
-            <Typography variant="h4" component="h2">
-              Sponsored Events
-            </Typography>
-            <SponsorEvents event_sponsors={sponsor.event_sponsors} />
-          </Box>
-        </Paper>
+        <EditDataCard title="Sponsored Events">
+          <SponsorEvents event_sponsors={sponsor.event_sponsors} />
+        </EditDataCard>
       )}
       {sponsor.panels.length > 0 && (
-        <Paper>
-          <Box sx={{ padding: "1rem", marginTop: "1rem" }}>
-            <Typography variant="h4" component="h2">
-              Sponsored Panels
-            </Typography>
-            <PanelList panels={sponsor.panels} />
-          </Box>
-        </Paper>
+        <EditDataCard title="Sponsored Panels">
+          <PanelList panels={sponsor.panels} />
+        </EditDataCard>
       )}
     </>
   );

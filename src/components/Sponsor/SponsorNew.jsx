@@ -1,7 +1,7 @@
-import { Typography, Paper, Box, TextField, Grid, Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FormContainer from "../Common/FormContainer";
+import TextFieldFixedLabel from "../Common/TextFieldFixedLabel";
 
 function SponsorNew() {
   const [sponsor, setSponsor] = useState({ name: "", logo_src: "", event_sponsors: [], panels: [] });
@@ -24,42 +24,10 @@ function SponsorNew() {
       .catch(console.log);
   };
   return (
-    <>
-      <Typography variant="h3" component="h1">
-        New Sponsor
-      </Typography>
-      <Paper elevation={1} sx={{ padding: "1rem" }}>
-        <Box component="form">
-          <TextField
-            id="name"
-            name="name"
-            label="Sponsor Name"
-            variant="outlined"
-            value={sponsor.name}
-            InputLabelProps={{ shrink: true }}
-            onChange={handleChange}
-            margin="normal"
-            fullWidth
-          />
-          <TextField
-            id="logo_src"
-            name="logo_src"
-            label="Sponsor Logo"
-            variant="outlined"
-            value={sponsor.logo_src}
-            InputLabelProps={{ shrink: true }}
-            onChange={handleChange}
-            margin="normal"
-            fullWidth
-          />
-          <Grid container direction="row" justifyContent="space-between">
-            <Button variant="contained" margin="normal" startIcon={<AddIcon />} onClick={handleSubmit}>
-              Create
-            </Button>
-          </Grid>
-        </Box>
-      </Paper>
-    </>
+    <FormContainer title="New Sponsor" hasDelete={false} onSubmit={handleSubmit}>
+      <TextFieldFixedLabel name="name" label="Sponsor Name" value={sponsor.name} onChange={handleChange} />
+      <TextFieldFixedLabel name="logo_src" label="Sponsor Logo" value={sponsor.logo_src} onChange={handleChange} />
+    </FormContainer>
   );
 }
 
