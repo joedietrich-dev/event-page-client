@@ -14,6 +14,8 @@ import SponsorNew from "./components/Sponsor/SponsorNew";
 import "./App.css";
 import HostNew from "./components/Host/HostNew";
 import HostEdit from "./components/Host/HostEdit";
+import HonoreeNew from "./components/Honoree/HonoreeNew";
+import HonoreeEdit from "./components/Honoree/HonoreeEdit";
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
           <Route path="hosts/new" element={<HostNew />} />
           <Route path="hosts/:hostId/edit" element={<HostEdit />} />
           <Route path="honorees" element={<Honorees />} />
+          <Route path="honorees/new" element={<HonoreeNew />} />
+          <Route path="honorees/:honoreeId/edit" element={<HonoreeEdit />} />
         </Route>
       </Routes>
     </Router>
