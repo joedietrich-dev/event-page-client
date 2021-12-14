@@ -1,5 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
+import useEditForm from "../../hooks/useEditForm";
 import EditDataCard from "../Common/EditDataCard";
 import FormContainer from "../Common/FormContainer";
 import TextFieldFixedLabel from "../Common/TextFieldFixedLabel";
@@ -9,38 +8,7 @@ import SponsorEvents from "./SponsorEvents";
 const blankSponsor = { name: "", logo_src: "", event_sponsors: [], panels: [] };
 
 function SponsorEdit() {
-  const { sponsorId } = useParams();
-  const { data: sponsor, setData: setSponsor } = useFetch(`${process.env.REACT_APP_API_ROOT}/sponsors/${sponsorId}`, blankSponsor);
-  let navigate = useNavigate();
-
-  const handleChange = (event) => {
-    setSponsor({ ...sponsor, [event.target.name]: event.target.value });
-  };
-  const handleSubmit = (event) => {
-    fetch(`${process.env.REACT_APP_API_ROOT}/sponsors/${sponsorId}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: sponsor.name,
-        logo_src: sponsor.logo_src,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => setSponsor({ ...sponsor, ...data }))
-      .catch(console.log);
-  };
-  const handleDelete = (event) => {
-    fetch(`${process.env.REACT_APP_API_ROOT}/sponsors/${sponsorId}`, {
-      method: "DELETE",
-    })
-      .then((res) => {
-        if (res.ok) {
-          setSponsor(blankSponsor);
-          navigate("/sponsors");
-        }
-      })
-      .catch(console.log);
-  };
+  const { data: sponsor, handleSubmit, handleChange, handleDelete } = useEditForm(blankSponsor, "sponsors", "sponsorId");
 
   return (
     <>
