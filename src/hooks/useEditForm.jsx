@@ -26,6 +26,7 @@ function useEditForm(defaultState, pathName, idName) {
     })
       .then((res) => res.json())
       .then((resJson) => setData({ ...data, ...resJson }))
+      .then(() => navigate(`/${pathName}`))
       .catch(console.log);
   };
   const handleDelete = (event) => {
