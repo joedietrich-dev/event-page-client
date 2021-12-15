@@ -1,21 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
 import Layout from "./components/Layout";
 import Home from "./components/Home";
 import Events from "./components/Event/Events";
 import EventView from "./components/Event/EventView";
-import Honorees from "./components/Honoree/Honorees";
-import Hosts from "./components/Host/Hosts";
-import Panelists from "./components/Panelist/Panelists";
-import Panels from "./components/Panel/Panels";
-import Sponsors from "./components/Sponsor/Sponsors";
 import EventEdit from "./components/Event/EventEdit";
-import SponsorEdit from "./components/Sponsor/SponsorEdit";
-import SponsorNew from "./components/Sponsor/SponsorNew";
-import "./App.css";
-import HostNew from "./components/Host/HostNew";
-import HostEdit from "./components/Host/HostEdit";
+import Honorees from "./components/Honoree/Honorees";
 import HonoreeNew from "./components/Honoree/HonoreeNew";
 import HonoreeEdit from "./components/Honoree/HonoreeEdit";
+import Hosts from "./components/Host/Hosts";
+import HostNew from "./components/Host/HostNew";
+import HostEdit from "./components/Host/HostEdit";
+import Panelists from "./components/Panelist/Panelists";
+import PanelistNew from "./components/Panelist/PanelistNew";
+import PanelistEdit from "./components/Panelist/PanelistEdit";
+import Panels from "./components/Panel/Panels";
+import Sponsors from "./components/Sponsor/Sponsors";
+import SponsorNew from "./components/Sponsor/SponsorNew";
+import SponsorEdit from "./components/Sponsor/SponsorEdit";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
           <Route path="sponsors/:sponsorId/edit" element={<SponsorEdit />} />
           <Route path="panels" element={<Panels />} />
           <Route path="panelists" element={<Panelists />} />
+          <Route path="panelists/new" element={<PanelistNew />} />
+          <Route path="panelists/:panelistId/edit" element={<PanelistEdit />} />
           <Route path="hosts" element={<Hosts />} />
           <Route path="hosts/new" element={<HostNew />} />
           <Route path="hosts/:hostId/edit" element={<HostEdit />} />
