@@ -15,6 +15,8 @@ import Panelists from "./components/Panelist/Panelists";
 import PanelistNew from "./components/Panelist/PanelistNew";
 import PanelistEdit from "./components/Panelist/PanelistEdit";
 import Panels from "./components/Panel/Panels";
+import PanelNew from "./components/Panel/PanelNew";
+import PanelEdit from "./components/Panel/PanelEdit";
 import Sponsors from "./components/Sponsor/Sponsors";
 import SponsorNew from "./components/Sponsor/SponsorNew";
 import SponsorEdit from "./components/Sponsor/SponsorEdit";
@@ -32,6 +34,8 @@ function App() {
           <Route path="sponsors/new" element={<SponsorNew />} />
           <Route path="sponsors/:sponsorId/edit" element={<SponsorEdit />} />
           <Route path="panels" element={<Panels />} />
+          <Route path="panels/new" element={<PanelNew />} />
+          <Route path="panels/:panelId/edit" element={<PanelEdit />} />
           <Route path="panelists" element={<Panelists />} />
           <Route path="panelists/new" element={<PanelistNew />} />
           <Route path="panelists/:panelistId/edit" element={<PanelistEdit />} />
