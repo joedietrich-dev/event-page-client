@@ -1,13 +1,12 @@
-import { Button, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
+import PageHeader from "../Common/PageHeader";
 
 function SponsorList({ sponsors }) {
   return (
     <>
-      <Typography variant="h3" component="h1">
-        View All Sponsors
-      </Typography>
+      <PageHeader text="View All Sponsors" />
       <Paper elevation={1}>
         <Table>
           <TableHead>

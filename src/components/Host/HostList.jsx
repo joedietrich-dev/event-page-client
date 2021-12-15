@@ -1,13 +1,12 @@
-import { Button, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography } from "@mui/material";
+import { Button, Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
+import PageHeader from "../Common/PageHeader";
 
 function HostList({ hosts }) {
   return (
     <>
-      <Typography variant="h3" component="h1">
-        View All Hosts
-      </Typography>
+      <PageHeader text="View All Hosts" />
       <Paper>
         <Table>
           <TableHead>

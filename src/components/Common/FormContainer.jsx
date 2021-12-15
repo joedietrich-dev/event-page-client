@@ -1,12 +1,11 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import FormButtonRow from "../Common/FormButtonRow";
+import PageHeader from "./PageHeader";
 
 function FormContainer({ title, children, hasDelete = true, onSubmit = (f) => f, onDelete = (f) => f }) {
   return (
     <>
-      <Typography variant="h3" component="h1">
-        {title}
-      </Typography>
+      <PageHeader text={title} />
       <Paper elevation={1} sx={{ padding: "1rem" }}>
         <Box component="form">
           {children}
