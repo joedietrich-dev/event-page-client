@@ -3,9 +3,10 @@ import EditDataCard from "../Common/EditDataCard";
 import FormContainer from "../Common/FormContainer";
 import TextFieldFixedLabel from "../Common/TextFieldFixedLabel";
 import PanelList from "../Panel/PanelList";
+import PanelSummaryList from "../Panel/PanelSummaryList";
 import SponsorEvents from "./SponsorEvents";
 
-const blankSponsor = { name: "", logo_src: "", event_sponsors: [], panels: [] };
+const blankSponsor = { name: "", logo_src: "", sponsored_events: [], panels: [] };
 
 function SponsorEdit() {
   const { data: sponsor, handleSubmit, handleChange, handleDelete } = useEditForm(blankSponsor, "sponsors", "sponsorId");
@@ -16,14 +17,14 @@ function SponsorEdit() {
         <TextFieldFixedLabel name="name" label="Sponsor Name" value={sponsor.name} onChange={handleChange} />
         <TextFieldFixedLabel name="logo_src" label="Sponsor Logo" value={sponsor.logo_src} onChange={handleChange} />
       </FormContainer>
-      {sponsor.event_sponsors.length > 0 && (
+      {sponsor.sponsored_events.length > 0 && (
         <EditDataCard title="Sponsored Events">
-          <SponsorEvents event_sponsors={sponsor.event_sponsors} />
+          <SponsorEvents event_sponsors={sponsor.sponsored_events} />
         </EditDataCard>
       )}
       {sponsor.panels.length > 0 && (
         <EditDataCard title="Sponsored Panels">
-          <PanelList panels={sponsor.panels} />
+          <PanelSummaryList panels={sponsor.panels} />
         </EditDataCard>
       )}
     </>

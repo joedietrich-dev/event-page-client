@@ -13,12 +13,12 @@ function SponsorEvents({ event_sponsors = [] }) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {event_sponsors.map(({ event, event_sponsor_level }) => (
+        {event_sponsors.map(({ id, title, event_sponsor_level }) => (
           <TableRow>
-            <TableCell>{event.title}</TableCell>
+            <TableCell>{title}</TableCell>
             <TableCell>{event_sponsor_level.name}</TableCell>
             <TableCell>
-              <Link to={`/events/${event.id}/edit`}>
+              <Link to={`/events/${id}/edit`}>
                 <EditIcon />
               </Link>
             </TableCell>
