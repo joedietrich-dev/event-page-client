@@ -1,14 +1,14 @@
 import Add from "@mui/icons-material/Add";
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Fab } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function NewButton({ to, content }) {
+  const navigate = useNavigate();
   return (
-    <Link to={to}>
-      <Button startIcon={<Add />} variant="contained">
-        {content}
-      </Button>
-    </Link>
+    <Fab sx={{ position: "fixed", bottom: 16, right: 16 }} variant="extended" aria-label="add" color="primary" onClick={() => navigate(to)}>
+      <Add sx={{ mr: 1 }}></Add>
+      {content}
+    </Fab>
   );
 }
 

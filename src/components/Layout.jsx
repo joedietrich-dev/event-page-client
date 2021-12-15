@@ -7,7 +7,7 @@ function Layout() {
     <div>
       <Navigation />
       <hr />
-      <Container>
+      <Container sx={{ position: "relative" }}>
         <Outlet />
       </Container>
     </div>
