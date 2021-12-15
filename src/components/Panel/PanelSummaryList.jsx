@@ -16,7 +16,7 @@ function PanelSummaryList({ panels, includeModerator = false }) {
       </TableHead>
       <TableBody>
         {panels.map((panel) => (
-          <TableRow>
+          <TableRow key={panel.id}>
             <TableCell>{panel.title}</TableCell>
             <TableCell>{panel.event}</TableCell>
             {includeModerator && <TableCell align="center">{panel?.is_moderator ? <Check /> : ""}</TableCell>}

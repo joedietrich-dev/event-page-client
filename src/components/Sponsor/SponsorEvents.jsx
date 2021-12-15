@@ -14,7 +14,7 @@ function SponsorEvents({ event_sponsors = [] }) {
       </TableHead>
       <TableBody>
         {event_sponsors.map(({ id, title, event_sponsor_level }) => (
-          <TableRow>
+          <TableRow key={id}>
             <TableCell>{title}</TableCell>
             <TableCell>{event_sponsor_level.name}</TableCell>
             <TableCell>
