@@ -2,7 +2,6 @@ import useEditForm from "../../hooks/useEditForm";
 import EditDataCard from "../Common/EditDataCard";
 import FormContainer from "../Common/FormContainer";
 import TextFieldFixedLabel from "../Common/TextFieldFixedLabel";
-import PanelList from "../Panel/PanelList";
 import PanelSummaryList from "../Panel/PanelSummaryList";
 import SponsorEvents from "./SponsorEvents";
 

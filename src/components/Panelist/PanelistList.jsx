@@ -23,7 +23,7 @@ function PanelistList({ panelists }) {
                 <TableCell>{panelist.name}</TableCell>
                 <TableCell>{panelist.title}</TableCell>
                 <TableCell>{panelist.company}</TableCell>
-                <TableCell>
+                <TableCell align="center">
                   <Link to={`${panelist.id}/edit`}>
                     <Button>
                       <EditIcon />
