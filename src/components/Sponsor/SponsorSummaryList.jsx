@@ -1,8 +1,20 @@
 import { Button, Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
+import RemoveCircle from "@mui/icons-material/RemoveCircle";
 
-function SponsorSummaryList({ sponsors }) {
+function SponsorSummaryList({ sponsors, panel = { id: 0 }, setData = (f) => f, hasRemove = false }) {
+  const handleRemoveSponsor = (panelistId) => {
+    fetch(`${process.env.REACT_APP_API_ROOT}/panels/${panel.id}/sponsors/${panelistId}`, {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        const newSponsors = sponsors.filter((panelist) => panelist.id !== panelistId);
+        setData((oldSponsors) => ({ ...oldSponsors, sponsors: newSponsors }));
+      }
+    });
+  };
+
   return (
     <Paper elevation={1}>
       <Table>
@@ -10,6 +22,7 @@ function SponsorSummaryList({ sponsors }) {
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell>Logo</TableCell>
+            {hasRemove && <TableCell align="center">Remove</TableCell>}
             <TableCell align="center">Edit</TableCell>
           </TableRow>
         </TableHead>
@@ -20,12 +33,17 @@ function SponsorSummaryList({ sponsors }) {
               <TableCell>
                 <img src={sponsor.logo_src} alt={sponsor.name} width="100" />
               </TableCell>
-              <TableCell align="center">
-                <Link to={`${sponsor.id}/edit`}>
-                  <Button>
-                    <EditIcon />
+              {hasRemove && (
+                <TableCell align="center">
+                  <Button color="warning" onClick={() => handleRemoveSponsor(sponsor.id)}>
+                    <RemoveCircle />
                   </Button>
-                </Link>
+                </TableCell>
+              )}
+              <TableCell align="center">
+                <Button component={Link} to={`/sponsors/${sponsor.id}/edit`}>
+                  <EditIcon />
+                </Button>
               </TableCell>
             </TableRow>
           ))}
