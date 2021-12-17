@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import useFetch from "../../hooks/useFetch";
+import NewButton from "../Common/NewButton";
 import PanelList from "./PanelList";
 
 function Panels() {
-  const [panels, setpanels] = useState([]);
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_ROOT}/panels`)
-      .then((res) => res.json())
-      .then(setpanels)
-      .catch(console.log);
-  }, []);
-  return <PanelList panels={panels} />;
+  const { data: panels } = useFetch(`${process.env.REACT_APP_API_ROOT}/panels`);
+  return (
+    <>
+      <NewButton to="new" content="New Panel" />
+      <PanelList panels={panels} />;
+    </>
+  );
 }
 
 export default Panels;
