@@ -43,7 +43,7 @@ function useEditForm(defaultState, pathName, idName) {
     });
   };
 
-  return { data, isLoading, handleChange, handleSubmit, handleDelete };
+  return { data, isLoading, handleChange, handleSubmit, handleDelete, setData };
 }
 
 export default useEditForm;
