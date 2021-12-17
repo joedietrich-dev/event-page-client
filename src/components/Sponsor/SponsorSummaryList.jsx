@@ -4,12 +4,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import RemoveCircle from "@mui/icons-material/RemoveCircle";
 
 function SponsorSummaryList({ sponsors, panel = { id: 0 }, setData = (f) => f, hasRemove = false }) {
-  const handleRemoveSponsor = (panelistId) => {
-    fetch(`${process.env.REACT_APP_API_ROOT}/panels/${panel.id}/sponsors/${panelistId}`, {
+  const handleRemoveSponsor = (sponsorId) => {
+    fetch(`${process.env.REACT_APP_API_ROOT}/panels/${panel.id}/sponsors/${sponsorId}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
-        const newSponsors = sponsors.filter((panelist) => panelist.id !== panelistId);
+        const newSponsors = sponsors.filter((sponsor) => sponsor.id !== sponsorId);
         setData((oldSponsors) => ({ ...oldSponsors, sponsors: newSponsors }));
       }
     });
