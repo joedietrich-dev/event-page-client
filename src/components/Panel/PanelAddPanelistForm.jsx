@@ -16,6 +16,7 @@ function PanelAddPanelistForm({ allPanelists = [], panelPanelists = [], panel, s
       .then((res) => res.json())
       .then((data) => {
         const newPanelists = [...panelPanelists, data];
+        setPanelistId("");
         setData((oldPanel) => ({ ...oldPanel, panelists: newPanelists }));
       });
   };

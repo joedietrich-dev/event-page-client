@@ -12,12 +12,14 @@ import LoadingContainer from "../Common/LoadingContainer";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import PanelAddPanelistForm from "./PanelAddPanelistForm";
+import PanelAddSponsorForm from "./PanelAddSponsorForm";
 
 const blankPanel = { title: "", description: "", time: Date.now(), panelists: [], event_id: "", sponsors: [] };
 
 function PanelEdit() {
   const { data: events } = useFetch(`${process.env.REACT_APP_API_ROOT}/events`, []);
   const { data: allPanelists } = useFetch(`${process.env.REACT_APP_API_ROOT}/panelists`, []);
+  const { data: allSponsors } = useFetch(`${process.env.REACT_APP_API_ROOT}/sponsors`, []);
   const { data: panel, isLoading, handleChange, handleSubmit, handleDelete, setData } = useEditForm(blankPanel, "panels", "panelId");
 
   const eventOptions = events.map((event) => ({ value: event.id, label: event.title }));
@@ -44,6 +46,7 @@ function PanelEdit() {
       </EditDataCard>
       <EditDataCard title="Sponsors">
         <SponsorSummaryList sponsors={panel.sponsors} panel={panel} setData={setData} hasRemove />
+        <PanelAddSponsorForm allSponsors={allSponsors} panelSponsors={panel.sponsors} panel={panel} setData={setData} />
       </EditDataCard>
     </LoadingContainer>
   );
