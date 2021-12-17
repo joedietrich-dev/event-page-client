@@ -4,14 +4,19 @@ import { useParams, useNavigate } from "react-router-dom";
 function useEditForm(defaultState, pathName, idName) {
   const id = useParams()[idName];
   const [data, setData] = useState(defaultState);
+  const [isLoading, setIsLoading] = useState(null);
   const navigate = useNavigate();
 
   const url = `${process.env.REACT_APP_API_ROOT}/${pathName}/${id}`;
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(url)
       .then((res) => res.json())
-      .then(setData)
+      .then((data) => {
+        setData(data);
+        setIsLoading(false);
+      })
       .catch(console.log);
   }, [url]);
 
@@ -38,7 +43,7 @@ function useEditForm(defaultState, pathName, idName) {
     });
   };
 
-  return { data, handleChange, handleSubmit, handleDelete };
+  return { data, isLoading, handleChange, handleSubmit, handleDelete };
 }
 
 export default useEditForm;
