@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import EditIcon from "@mui/icons-material/Edit";
 import RemoveCircle from "@mui/icons-material/RemoveCircle";
 
-function SponsorSummaryList({ sponsors, panel = { id: 0 }, setData = (f) => f, hasRemove = false }) {
+function SponsorSummaryList({ sponsors = [], panel = { id: 0 }, setData = (f) => f, hasRemove = false }) {
   const handleRemoveSponsor = (sponsorId) => {
     fetch(`${process.env.REACT_APP_API_ROOT}/panels/${panel.id}/sponsors/${sponsorId}`, {
       method: "DELETE",

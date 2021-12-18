@@ -19,7 +19,7 @@ function PanelistEdit() {
       </FormContainer>
       {panelist.panels.length > 0 && (
         <EditDataCard title="Panels">
-          <PanelSummaryList panels={panelist.panels} includeModerator />
+          <PanelSummaryList panels={panelist.panels} includeIsModerator includeEventId />
         </EditDataCard>
       )}
     </>

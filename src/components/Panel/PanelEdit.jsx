@@ -45,7 +45,7 @@ function PanelEdit() {
         <PanelAddPanelistForm allPanelists={allPanelists} panelPanelists={panel.panelists} panel={panel} setData={setData} />
       </EditDataCard>
       <EditDataCard title="Sponsors">
-        <SponsorSummaryList sponsors={panel.sponsors} panel={panel} setData={setData} hasRemove />
+        <SponsorSummaryList sponsors={panel.sponsors} panel={panel} setData={setData} hasRemove includeLogo />
         <PanelAddSponsorForm allSponsors={allSponsors} panelSponsors={panel.sponsors} panel={panel} setData={setData} />
       </EditDataCard>
     </LoadingContainer>

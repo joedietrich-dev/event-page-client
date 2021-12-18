@@ -10,6 +10,12 @@ import EditDataCard from "../Common/EditDataCard";
 import HostSummaryList from "../Host/HostSummaryList";
 import useFetch from "../../hooks/useFetch";
 import EventAddHostForm from "./EventAddHostForm";
+import HonoreeSummaryList from "../Honoree/HonoreeSummaryList";
+import EventAddHonoreeForm from "./EventAddHonoreeForm";
+import PanelSummaryList from "../Panel/PanelSummaryList";
+import EventAddPanelForm from "./EventAddPanelForm";
+import EventSponsorSummaryList from "./EventSponsorSummaryList";
+import EventAddSponsorForm from "./EventAddSponsorForm";
 
 const blankEvent = {
   title: "",
@@ -22,15 +28,21 @@ const blankEvent = {
   date: Date.now(),
   hosts: [],
   honorees: [],
+  panels: [],
   event_sponsors: [],
 };
 
 function EventEdit() {
   const { data: allHosts } = useFetch(`${process.env.REACT_APP_API_ROOT}/hosts`, []);
-  const { data: allPanels } = useFetch(`${process.env.REACT_APP_API_ROOT}/panelists`, []);
+  const { data: allHonorees } = useFetch(`${process.env.REACT_APP_API_ROOT}/honorees`, []);
+  const { data: allPanels } = useFetch(`${process.env.REACT_APP_API_ROOT}/panels`, []);
   const { data: allSponsors } = useFetch(`${process.env.REACT_APP_API_ROOT}/sponsors`, []);
+  const { data: eventSponsorLevels } = useFetch(`${process.env.REACT_APP_API_ROOT}/event_sponsor_levels`, []);
   const { data: eventEntity, isLoading, handleSubmit, handleChange, handleDelete, setData } = useEditForm(blankEvent, "events", "eventId");
   const validHosts = allHosts.filter((host) => host.event_id === null);
+  const validHonorees = allHonorees.filter((honoree) => honoree.event_id === null);
+  const validPanels = allPanels.filter((panel) => panel.event_id === null);
+  const levelOptions = eventSponsorLevels.map((esl) => ({ value: esl.id, label: esl.name }));
 
   return (
     <LoadingContainer isLoading={isLoading}>
@@ -57,8 +69,31 @@ function EventEdit() {
         <HostSummaryList hosts={eventEntity.hosts} event={eventEntity} setData={setData} hasRemove />
         <EventAddHostForm allHosts={validHosts} eventHosts={eventEntity.hosts} eventEntity={eventEntity} setData={setData} />
       </EditDataCard>
-      <EditDataCard title="Honorees"></EditDataCard>
-      <EditDataCard title="Sponsors"></EditDataCard>
+      <EditDataCard title="Honorees">
+        <HonoreeSummaryList honorees={eventEntity.honorees} event={eventEntity} setData={setData} hasRemove />
+        <EventAddHonoreeForm allHonorees={validHonorees} eventHonorees={eventEntity.honorees} eventEntity={eventEntity} setData={setData} />
+      </EditDataCard>
+      <EditDataCard title="Panels">
+        <PanelSummaryList panels={eventEntity.panels} event={eventEntity} setData={setData} includeTime hasRemove />
+        <EventAddPanelForm allPanels={validPanels} eventPanels={eventEntity.panels} eventEntity={eventEntity} setData={setData} />
+      </EditDataCard>
+
+      <EditDataCard title="Sponsors">
+        <EventSponsorSummaryList
+          eventSponsors={eventEntity.event_sponsors}
+          eventEntity={eventEntity}
+          eventSponsorLevels={levelOptions}
+          setData={setData}
+          hasRemove
+        />
+        <EventAddSponsorForm
+          allSponsors={allSponsors}
+          eventSponsors={eventEntity.event_sponsors}
+          eventSponsorLevels={levelOptions}
+          eventEntity={eventEntity}
+          setData={setData}
+        />
+      </EditDataCard>
     </LoadingContainer>
   );
 }

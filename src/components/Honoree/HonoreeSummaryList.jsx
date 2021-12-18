@@ -1,50 +1,52 @@
 import { Button, Paper, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
-import { Link } from "react-router-dom";
 import RemoveCircle from "@mui/icons-material/RemoveCircle";
+import { Link } from "react-router-dom";
 
-function HostSummaryList({ hosts, event = { id: 0 }, setData = (f) => f, hasRemove = false, includeEventId = false }) {
-  const handleRemoveHost = (hostId) => {
-    fetch(`${process.env.REACT_APP_API_ROOT}/events/${event.id}/hosts/${hostId}`, {
+function HonoreeSummaryList({ honorees, event = { id: 0 }, setData = (f) => f, hasRemove = false, includeEventId = false }) {
+  const handleRemoveHonoree = (id) => {
+    fetch(`${process.env.REACT_APP_API_ROOT}/events/${event.id}/honorees/${id}`, {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
-        const newHosts = hosts.filter((host) => host.id !== hostId);
-        setData((oldHosts) => ({ ...oldHosts, hosts: newHosts }));
+        console.log("ok");
+        const newHonorees = honorees.filter((honoree) => honoree.id !== id);
+        setData((oldHonorees) => ({ ...oldHonorees, honorees: newHonorees }));
       }
     });
   };
+
   return (
     <Paper elevation={1}>
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Host Name</TableCell>
+            <TableCell>Honoree Name</TableCell>
+            <TableCell>Honor</TableCell>
             {includeEventId && <TableCell>Event ID</TableCell>}
             {hasRemove && <TableCell align="center">Remove</TableCell>}
             <TableCell align="center">Edit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {hosts.map((host) => (
-            <TableRow key={host.id}>
-              <TableCell component="th" scope="row">
-                {host.name}
-              </TableCell>
+          {honorees.map((honoree) => (
+            <TableRow key={honoree.id}>
+              <TableCell>{honoree.name}</TableCell>
+              <TableCell>{honoree.honor}</TableCell>
               {includeEventId && (
                 <TableCell>
-                  <Link to={`/events/${host.event_id}/edit`}>{host.event_id}</Link>
+                  <Link to={`/events/${honoree.event_id}/edit`}>{honoree.event_id}</Link>
                 </TableCell>
               )}
               {hasRemove && (
                 <TableCell align="center">
-                  <Button color="warning" onClick={() => handleRemoveHost(host.id)}>
+                  <Button color="warning" onClick={() => handleRemoveHonoree(honoree.id)}>
                     <RemoveCircle />
                   </Button>
                 </TableCell>
               )}
               <TableCell align="center">
-                <Button component={Link} to={`/hosts/${host.id}/edit`}>
+                <Button component={Link} to={`/honorees/${honoree.id}/edit`}>
                   <EditIcon />
                 </Button>
               </TableCell>
@@ -56,4 +58,4 @@ function HostSummaryList({ hosts, event = { id: 0 }, setData = (f) => f, hasRemo
   );
 }
 
-export default HostSummaryList;
+export default HonoreeSummaryList;
