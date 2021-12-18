@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 function Event() {
   const [event, setEvent] = useState([]);
   const { eventId } = useParams();
+
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_ROOT}/events/${eventId}`)
       .then((res) => res.json())

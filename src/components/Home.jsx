@@ -33,7 +33,7 @@ const NavItem = ({ icon, to, text }) => (
 
 function Home() {
   return (
-    <Paper sx={{ width: "100%", maxWidth: 360 }} elevation={3}>
+    <Paper sx={{ width: "100%" }} elevation={3}>
       <nav aria-label="main page navigation">
         <List>
           {appNav.map((item) => (
