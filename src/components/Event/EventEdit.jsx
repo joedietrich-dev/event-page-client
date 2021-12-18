@@ -16,6 +16,7 @@ import PanelSummaryList from "../Panel/PanelSummaryList";
 import EventAddPanelForm from "./EventAddPanelForm";
 import EventSponsorSummaryList from "./EventSponsorSummaryList";
 import EventAddSponsorForm from "./EventAddSponsorForm";
+import useMultiFetch from "../../hooks/useMultiFetch";
 
 const blankEvent = {
   title: "",
@@ -32,20 +33,25 @@ const blankEvent = {
   event_sponsors: [],
 };
 
+const urls = [
+  `${process.env.REACT_APP_API_ROOT}/hosts`,
+  `${process.env.REACT_APP_API_ROOT}/honorees`,
+  `${process.env.REACT_APP_API_ROOT}/panels`,
+  `${process.env.REACT_APP_API_ROOT}/sponsors`,
+  `${process.env.REACT_APP_API_ROOT}/event_sponsor_levels`,
+];
+
 function EventEdit() {
-  const { data: allHosts } = useFetch(`${process.env.REACT_APP_API_ROOT}/hosts`, []);
-  const { data: allHonorees } = useFetch(`${process.env.REACT_APP_API_ROOT}/honorees`, []);
-  const { data: allPanels } = useFetch(`${process.env.REACT_APP_API_ROOT}/panels`, []);
-  const { data: allSponsors } = useFetch(`${process.env.REACT_APP_API_ROOT}/sponsors`, []);
-  const { data: eventSponsorLevels } = useFetch(`${process.env.REACT_APP_API_ROOT}/event_sponsor_levels`, []);
+  const { data: listData, isLoading: isAllDataLoading } = useMultiFetch(urls);
   const { data: eventEntity, isLoading, handleSubmit, handleChange, handleDelete, setData } = useEditForm(blankEvent, "events", "eventId");
-  const validHosts = allHosts.filter((host) => host.event_id === null);
-  const validHonorees = allHonorees.filter((honoree) => honoree.event_id === null);
-  const validPanels = allPanels.filter((panel) => panel.event_id === null);
-  const levelOptions = eventSponsorLevels.map((esl) => ({ value: esl.id, label: esl.name }));
+  const validHosts = listData[0]?.filter((host) => host.event_id === null);
+  const validHonorees = listData[1]?.filter((honoree) => honoree.event_id === null);
+  const validPanels = listData[2]?.filter((panel) => panel.event_id === null);
+  const allSponsors = listData[3];
+  const levelOptions = listData[4]?.map((esl) => ({ value: esl.id, label: esl.name }));
 
   return (
-    <LoadingContainer isLoading={isLoading}>
+    <LoadingContainer isLoading={isLoading || isAllDataLoading}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <FormContainer title="Edit Event" onSubmit={handleSubmit} onDelete={handleDelete}>
           <TextFieldFixedLabel name="title" label="Title" value={eventEntity.title} onChange={handleChange} />

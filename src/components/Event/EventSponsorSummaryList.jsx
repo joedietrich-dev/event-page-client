@@ -8,6 +8,8 @@ import Select from "@mui/material/Select";
 
 function EventSponsorSummaryList({ eventSponsors = [], eventEntity = { id: 0 }, eventSponsorLevels = [], setData = (f) => f, hasRemove = false }) {
   const sortedSponsors = [...eventSponsors].sort((first, second) => {
+    if (!first.event_sponsor_level) return 1;
+    if (!second.event_sponsor_level) return -1;
     if (first.event_sponsor_level.rank > second.event_sponsor_level.rank) {
       return 1;
     } else if (first.event_sponsor_level.rank < second.event_sponsor_level.rank) {
@@ -64,7 +66,7 @@ function EventSponsorSummaryList({ eventSponsors = [], eventEntity = { id: 0 }, 
                   <Select
                     id="event_sponsor_level"
                     name="event_sponsor_level"
-                    value={eventSponsor.event_sponsor_level.id}
+                    value={eventSponsor?.event_sponsor_level?.id || ""}
                     onChange={(event) => handleChangeRank(eventSponsor.id, event.target.value)}
                   >
                     {eventSponsorLevels.map(({ value, label }) => (
