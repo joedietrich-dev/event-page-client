@@ -8,7 +8,6 @@ import TextFieldFixedLabel from "../Common/TextFieldFixedLabel";
 import TextField from "@mui/material/TextField";
 import EditDataCard from "../Common/EditDataCard";
 import HostSummaryList from "../Host/HostSummaryList";
-import useFetch from "../../hooks/useFetch";
 import EventAddHostForm from "./EventAddHostForm";
 import HonoreeSummaryList from "../Honoree/HonoreeSummaryList";
 import EventAddHonoreeForm from "./EventAddHonoreeForm";

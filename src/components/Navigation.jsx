@@ -1,4 +1,4 @@
-import { Button, Paper, Stack, styled } from "@mui/material";
+import { Button, Stack, styled } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
 const Link = styled(Button)(({ theme }) => ({
