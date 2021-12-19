@@ -1,18 +1,4 @@
-import {
-  Button,
-  ButtonGroup,
-  Typography,
-  Link,
-  Grid,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Avatar,
-  ListSubheader,
-  ListItemIcon,
-  Box,
-} from "@mui/material";
+import { Button, ButtonGroup, Typography, Link, Grid, List, ListItem, ListItemAvatar, ListItemText, Avatar, Box } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
