@@ -9,9 +9,9 @@ const Paragraph = ({ children, ...params }) => (
 );
 
 const SponsorItem = ({ sponsor }) => (
-  <Grid container width="100%">
+  <Grid container width="100%" mb={2}>
     <Grid item xs={2} sx={{ marginRight: 2 }}>
-      <img src={sponsor.logo_src} alt={sponsor.name} />
+      <img src={sponsor.logo_src} alt={sponsor.name} width="100%" />
     </Grid>
     <Grid item xs={9}>
       {sponsor.name}
@@ -21,7 +21,7 @@ const SponsorItem = ({ sponsor }) => (
 
 const SponsorSection = ({ sponsors, sponsorText }) => (
   <>
-    <Typography variant="h4" mt={2}>
+    <Typography variant="h4" mt={4}>
       {sponsorText}
     </Typography>
 
