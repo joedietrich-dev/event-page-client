@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import NewButton from "../Common/NewButton";
+import PageHeader from "../Common/PageHeader";
 import EventList from "./EventList";
 
 function Events() {
@@ -10,7 +12,13 @@ function Events() {
       .catch(console.log);
   }, []);
 
-  return <EventList events={events} />;
+  return (
+    <>
+      <PageHeader text="View All Events" />
+      <NewButton to="new" content="New Event" />
+      <EventList events={events} />
+    </>
+  );
 }
 
 export default Events;

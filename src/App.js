@@ -20,6 +20,7 @@ import PanelEdit from "./components/Panel/PanelEdit";
 import Sponsors from "./components/Sponsor/Sponsors";
 import SponsorNew from "./components/Sponsor/SponsorNew";
 import SponsorEdit from "./components/Sponsor/SponsorEdit";
+import EventNew from "./components/Event/EventNew";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="events" element={<Events />} />
+          <Route path="events/new" element={<EventNew />} />
           <Route path="events/:eventId/view" element={<EventView />} />
           <Route path="events/:eventId/edit" element={<EventEdit />} />
           <Route path="sponsors" element={<Sponsors />} />

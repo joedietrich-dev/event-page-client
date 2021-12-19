@@ -7,7 +7,7 @@ function Panels() {
   return (
     <>
       <NewButton to="new" content="New Panel" />
-      <PanelList panels={panels} />;
+      <PanelList panels={panels} />
     </>
   );
 }
