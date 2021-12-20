@@ -11,7 +11,7 @@ For the server / backend of this application, see [joedietrich-dev/event-pages-s
 
 ## Inspiration
 
-I was inspired to build this when I was tasked with repeatedly hand-coding landing pages in simple html. This was ineffecient in terms of time spent and meant I was the only person around able to maintain the pages or make any changes. I set out to create a proof-of-concept / MVP event page builder. It has nearly all the entities I need to build those hand-coded pages.
+I was inspired to build this when I was tasked with repeatedly hand-coding landing pages in simple html. This was inefficient in terms of time spent and meant I was the only person around able to maintain the pages or make any changes. I set out to create a proof-of-concept / MVP event page builder. It has nearly all the entities I need to build those hand-coded pages.
 
 Since this was a proof-of-concept, the design of the app itself could be improved. It also lacks much validation on the front or back end, and has no authentication. All of these would need to be implemented before using this in any sort of production application.
 
